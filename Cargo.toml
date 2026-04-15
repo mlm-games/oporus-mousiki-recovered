@@ -40,12 +40,12 @@ autoexamples = false
 autotests = false
 autobenches = false
 description = "Pure Rust Opus codec."
-homepage = "https://github.com/cijiugechu/mousiki"
+homepage = "https://github.com/MLM-Stuff/mousiki"
 readme = "README.md"
 keywords = ["audio", "codec", "decoder", "opus"]
 categories = ["multimedia", "multimedia::audio", "multimedia::encoding"]
 license = "MIT"
-repository = "https://github.com/cijiugechu/mousiki"
+repository = "https://github.com/MLM-Stuff/mousiki"
 
 [features]
 custom_modes = []

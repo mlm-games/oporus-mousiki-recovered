@@ -6,9 +6,9 @@ resolver = "3"
 [package]
 name = "mousiki"
 description = "Pure Rust Opus codec."
-homepage = "https://github.com/cijiugechu/mousiki"
-repository = "https://github.com/cijiugechu/mousiki"
-authors = ["nemurubaka <cijiugechu@gmail.com>"]
+homepage = "https://github.com/MLM-Stuff/mousiki"
+repository = "https://github.com/MLM-Stuff/mousiki"
+authors = ["nemurubaka <cijiugechu@gmail.com>"] # Seems to have Had deleted/privated the og repo
 version = "0.2.1"
 edition = "2024"
 license = "MIT"

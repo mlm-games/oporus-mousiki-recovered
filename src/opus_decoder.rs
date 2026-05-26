@@ -1918,16 +1918,16 @@ mod tests {
     use crate::celt::{
         OpusRes, canonical_mode, celt_decoder_get_size, celt_exp2, opus_custom_decoder_create,
     };
-    #[cfg(feature = "fixed_point")]
-    use crate::packet::{
-        Bandwidth, Mode, PacketError, opus_packet_get_bandwidth, opus_packet_get_nb_channels,
-    };
     use crate::silk::dec_api::Decoder as SilkDecoder;
     use crate::silk::get_decoder_size::get_decoder_size;
     use alloc::vec;
     use alloc::vec::Vec;
     #[cfg(feature = "deep_plc_weights")]
     use mousiki_deep_plc_weights::DNN_BLOB;
+
+    use crate::packet::{
+        Bandwidth, Mode, PacketError, opus_packet_get_bandwidth, opus_packet_get_nb_channels,
+    };
 
     #[cfg(feature = "fixed_point")]
     include!(concat!(

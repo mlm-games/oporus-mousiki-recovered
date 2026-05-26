@@ -4194,17 +4194,17 @@ pub(crate) fn denormalise_bands_fixed(
 #[cfg(test)]
 mod tests {
     use super::{
-        BandCodingState, BandCtx, DB_SHIFT, EPSILON, NORM_SCALING, SplitCtx, anti_collapse,
-        bitexact_cos, bitexact_log2tan, celt_lcg_rand, compute_band_energies,
-        compute_channel_weights, compute_qn, compute_theta, deinterleave_hadamard,
-        denormalise_bands, frac_mul16, haar1, hysteresis_decision, intensity_stereo,
-        interleave_hadamard, normalise_bands, quant_band_n1, special_hybrid_folding,
-        spreading_decision, stereo_merge, stereo_split,
+        BandCodingState, BandCtx, EPSILON, NORM_SCALING, SplitCtx, anti_collapse, bitexact_cos,
+        bitexact_log2tan, celt_lcg_rand, compute_band_energies, compute_channel_weights,
+        compute_qn, compute_theta, deinterleave_hadamard, denormalise_bands, frac_mul16, haar1,
+        hysteresis_decision, intensity_stereo, interleave_hadamard, normalise_bands, quant_band_n1,
+        special_hybrid_folding, spreading_decision, stereo_merge, stereo_split,
     };
     #[cfg(feature = "fixed_point")]
     use super::{
-        compute_band_energies_fixed, denormalise_bands_fixed_native, normalise_bands_fixed,
-        pvq_alg_quant_runtime, pvq_alg_unquant_runtime, pvq_renormalise_runtime,
+        DB_SHIFT, compute_band_energies_fixed, denormalise_bands_fixed_native,
+        normalise_bands_fixed, pvq_alg_quant_runtime, pvq_alg_unquant_runtime,
+        pvq_renormalise_runtime,
     };
     use crate::celt::entcode::BITRES;
     #[cfg(feature = "fixed_point")]

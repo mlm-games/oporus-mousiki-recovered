@@ -5753,6 +5753,7 @@ mod tests {
         assert_eq!(decoder.loss_duration, 1);
     }
 
+    #[cfg(feature = "fixed_point")]
     #[test]
     fn celt_decode_lost_pitch_branch_generates_output() {
         use crate::celt::modes::opus_custom_mode_find_static;

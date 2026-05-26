@@ -11,11 +11,11 @@ resolver = "3"
 [package]
 name = "mousiki"
 description = "Pure Rust Opus codec."
-homepage = "https://github.com/MLM-Stuff/mousiki"
-repository = "https://github.com/MLM-Stuff/mousiki"
+homepage = "https://github.com/mlm-games/mousiki"
+repository = "https://github.com/mlm-games/mousiki"
 authors = [
-    "nemurubaka <cijiugechu@gmail.com>",
-] # Seems to have Had deleted/privated the og repo
+    "nemurubaka <cijiugechu@gmail.com>", # Seems to have Had deleted/privated the og repo
+]
 version = "0.2.1"
 edition = "2024"
 license = "MIT"

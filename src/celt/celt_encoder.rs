@@ -3149,6 +3149,10 @@ fn dynalloc_analysis(
             }
         }
 
+        if effective_bytes > 320 {
+            follower[0] += (1e-3 * (effective_bytes - 320) as f32).min(1.5);
+        }
+
         for i in start..end {
             let follower_val = follower[i].min(4.0);
             let band_width = i32::from(e_bands[i + 1]) - i32::from(e_bands[i]);

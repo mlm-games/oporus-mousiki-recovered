@@ -1,3 +1,8 @@
+# Recovered version of mousiki, with a few other port fixes from the c implementation. Mainly recovered, for adding few other fixes for my apps (Miniter/Yadaw)
+
+
+# Original repo's readme (it was either removed or privated by the original author, but had also uploaded it to crates.io so...)
+
 # mousiki
 
 A Rust port of the Xiph `opus-c` reference implementation. The core crate is

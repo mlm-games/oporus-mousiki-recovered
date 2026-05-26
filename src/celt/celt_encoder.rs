@@ -1335,7 +1335,7 @@ fn to_opus(value: u8) -> Option<u8> {
 
 /// Errors that can be reported while initialising a CELT encoder instance.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum CeltEncoderInitError {
+pub enum CeltEncoderInitError {
     /// The requested number of channels exceeds the supported range.
     InvalidChannelCount,
     /// The number of coded stream channels is inconsistent with the layout.
@@ -1346,7 +1346,7 @@ pub(crate) enum CeltEncoderInitError {
 
 /// Errors that can be emitted by [`opus_custom_encoder_ctl`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum CeltEncoderCtlError {
+pub enum CeltEncoderCtlError {
     /// The provided argument is outside the range accepted by the request.
     InvalidArgument,
     /// The request has not been implemented by the Rust port yet.
@@ -1355,7 +1355,7 @@ pub(crate) enum CeltEncoderCtlError {
 
 /// Errors that can arise while encoding a frame with [`celt_encode_with_ec`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum CeltEncodeError {
+pub enum CeltEncodeError {
     /// The caller did not supply enough PCM samples for the configured layout.
     InsufficientPcm,
     /// The provided frame size is not compatible with the encoder mode.
@@ -1366,7 +1366,7 @@ pub(crate) enum CeltEncodeError {
 
 /// Strongly-typed replacement for the varargs CTL dispatcher used by the C implementation.
 #[allow(clippy::large_enum_variant)]
-pub(crate) enum EncoderCtlRequest<'enc, 'req> {
+pub enum EncoderCtlRequest<'enc, 'req> {
     SetComplexity(i32),
     SetStartBand(i32),
     SetEndBand(i32),
@@ -1393,7 +1393,7 @@ pub(crate) enum EncoderCtlRequest<'enc, 'req> {
 
 /// Returns the number of bytes required to allocate an encoder for `mode`.
 #[must_use]
-pub(crate) fn opus_custom_encoder_get_size(mode: &OpusCustomMode<'_>, channels: usize) -> usize {
+pub fn opus_custom_encoder_get_size(mode: &OpusCustomMode<'_>, channels: usize) -> usize {
     let in_mem = channels * mode.overlap;
     let prefilter_mem = channels * COMBFILTER_MAXPERIOD;
     let band_count = channels * mode.num_ebands;
@@ -1422,7 +1422,7 @@ pub(crate) fn celt_encoder_get_size(channels: usize) -> Option<usize> {
 }
 
 /// Mirrors `opus_custom_encoder_init_arch()` from the reference encoder.
-pub(crate) fn opus_custom_encoder_init_arch<'mode>(
+pub fn opus_custom_encoder_init_arch<'mode>(
     alloc: &mut CeltEncoderAlloc,
     mode: &'mode OpusCustomMode<'mode>,
     channels: usize,
@@ -1433,7 +1433,7 @@ pub(crate) fn opus_custom_encoder_init_arch<'mode>(
 }
 
 /// Mirrors `opus_custom_encoder_init()` by selecting the runtime architecture automatically.
-pub(crate) fn opus_custom_encoder_init<'mode>(
+pub fn opus_custom_encoder_init<'mode>(
     alloc: &mut CeltEncoderAlloc,
     mode: &'mode OpusCustomMode<'mode>,
     channels: usize,
@@ -1459,7 +1459,7 @@ pub(crate) fn celt_encoder_init(
 }
 
 /// Mirrors `opus_custom_encoder_destroy()` which simply releases the encoder state.
-pub(crate) fn opus_custom_encoder_destroy(_encoder: OwnedCeltEncoder<'_>) {}
+pub fn opus_custom_encoder_destroy(_encoder: OwnedCeltEncoder<'_>) {}
 
 /// Owning wrapper around [`OpusCustomEncoder`] and its backing allocation.
 ///
@@ -1468,7 +1468,7 @@ pub(crate) fn opus_custom_encoder_destroy(_encoder: OwnedCeltEncoder<'_>) {}
 /// the higher-level Opus front-end while the encoder now owns its backing
 /// buffers directly.
 #[derive(Debug)]
-pub(crate) struct OwnedCeltEncoder<'mode> {
+pub struct OwnedCeltEncoder<'mode> {
     encoder: OpusCustomEncoder<'mode>,
 }
 
@@ -1509,7 +1509,7 @@ impl<'mode> core::ops::DerefMut for OwnedCeltEncoder<'mode> {
 /// Mirrors the allocation strategy used by `opus_custom_encoder_create()` in
 /// `celt/celt_encoder.c` by returning an owned wrapper that keeps the trailing
 /// buffers alive for the lifetime of the encoder view.
-pub(crate) fn opus_custom_encoder_create<'mode>(
+pub fn opus_custom_encoder_create<'mode>(
     mode: &'mode OpusCustomMode<'mode>,
     sampling_rate: OpusInt32,
     channels: usize,
@@ -2477,7 +2477,7 @@ impl CeltEncoderAlloc {
 }
 
 /// Applies a control request to the provided encoder state.
-pub(crate) fn opus_custom_encoder_ctl<'enc, 'req>(
+pub fn opus_custom_encoder_ctl<'enc, 'req>(
     encoder: &mut OpusCustomEncoder<'enc>,
     request: EncoderCtlRequest<'enc, 'req>,
 ) -> Result<(), CeltEncoderCtlError> {
@@ -6821,7 +6821,7 @@ fn encode_with_converted_pcm(
 }
 
 /// Ports the 16-bit PCM wrapper `opus_custom_encode()` from `celt/celt_encoder.c`.
-pub(crate) fn opus_custom_encode(
+pub fn opus_custom_encode(
     encoder: &mut OpusCustomEncoder<'_>,
     pcm: &[OpusInt16],
     frame_size: usize,
@@ -6844,7 +6844,7 @@ pub(crate) fn opus_custom_encode(
 }
 
 /// Ports the 24-bit PCM wrapper `opus_custom_encode24()` from `celt/celt_encoder.c`.
-pub(crate) fn opus_custom_encode24(
+pub fn opus_custom_encode24(
     encoder: &mut OpusCustomEncoder<'_>,
     pcm: &[OpusInt32],
     frame_size: usize,
@@ -6867,7 +6867,7 @@ pub(crate) fn opus_custom_encode24(
 }
 
 /// Ports the float PCM wrapper `opus_custom_encode_float()` from `celt/celt_encoder.c`.
-pub(crate) fn opus_custom_encode_float(
+pub fn opus_custom_encode_float(
     encoder: &mut OpusCustomEncoder<'_>,
     pcm: &[f32],
     frame_size: usize,

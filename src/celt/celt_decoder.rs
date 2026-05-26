@@ -2343,7 +2343,7 @@ const DECODER_PREFIX_SIZE: usize = core::mem::size_of::<DecoderLayoutStub>();
 
 /// Returns the number of bytes required to allocate a decoder for `mode`.
 #[must_use]
-pub(crate) fn opus_custom_decoder_get_size(
+pub fn opus_custom_decoder_get_size(
     mode: &OpusCustomMode<'_>,
     channels: usize,
 ) -> Option<usize> {
@@ -2387,7 +2387,7 @@ pub(crate) fn celt_decoder_get_size(channels: usize) -> Option<usize> {
 /// the historical "owned decoder handle" surface used by the Opus front-end
 /// and existing tests.
 #[derive(Debug)]
-pub(crate) struct OwnedCeltDecoder<'mode> {
+pub struct OwnedCeltDecoder<'mode> {
     decoder: OpusCustomDecoder<'mode>,
 }
 
@@ -2470,7 +2470,7 @@ pub(crate) fn celt_decoder_init(
 
 /// Errors that can be reported while preparing to decode a CELT frame.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum CeltDecodeError {
+pub enum CeltDecodeError {
     /// Input arguments were inconsistent with the current decoder state.
     BadArgument,
     /// The supplied packet was too short to decode a frame and should trigger PLC.
@@ -4149,7 +4149,7 @@ where
     celt_decode_with_ec_dred(decoder, packet, pcm, frame_size, range_decoder, accum, plc)
 }
 
-pub(crate) fn opus_custom_decode(
+pub fn opus_custom_decode(
     decoder: &mut OpusCustomDecoder<'_>,
     packet: Option<&[u8]>,
     pcm: &mut [i16],
@@ -4212,7 +4212,7 @@ pub(crate) fn opus_custom_decode(
     Ok(samples)
 }
 
-pub(crate) fn opus_custom_decode24(
+pub fn opus_custom_decode24(
     decoder: &mut OpusCustomDecoder<'_>,
     packet: Option<&[u8]>,
     pcm: &mut [i32],
@@ -4234,7 +4234,7 @@ pub(crate) fn opus_custom_decode24(
     Ok(samples)
 }
 
-pub(crate) fn opus_custom_decode_float(
+pub fn opus_custom_decode_float(
     decoder: &mut OpusCustomDecoder<'_>,
     packet: Option<&[u8]>,
     pcm: &mut [f32],
@@ -4245,7 +4245,7 @@ pub(crate) fn opus_custom_decode_float(
 
 /// Errors that can be reported when initialising a CELT decoder instance.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum CeltDecoderInitError {
+pub enum CeltDecoderInitError {
     /// Channel count was zero or larger than the supported maximum.
     InvalidChannelCount,
     /// Requested stream channel layout is not compatible with the physical
@@ -4260,7 +4260,7 @@ pub(crate) enum CeltDecoderInitError {
 
 /// Errors that can be emitted by [`opus_custom_decoder_ctl`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum CeltDecoderCtlError {
+pub enum CeltDecoderCtlError {
     /// The provided argument is outside the range accepted by the request.
     InvalidArgument,
     /// The request has not been implemented by the Rust port yet.
@@ -4268,7 +4268,7 @@ pub(crate) enum CeltDecoderCtlError {
 }
 
 /// Strongly-typed replacement for the decoder-side varargs CTL dispatcher.
-pub(crate) enum DecoderCtlRequest<'dec, 'req> {
+pub enum DecoderCtlRequest<'dec, 'req> {
     SetComplexity(i32),
     GetComplexity(&'req mut i32),
     SetStartBand(i32),
@@ -4541,7 +4541,7 @@ impl CeltDecoderAlloc {
 /// freshly reset state.  The helper leaves the downsampling factor at unity, as
 /// the C implementation derives any alternative stride from the caller-provided
 /// sampling rate after this routine completes.
-pub(crate) fn opus_custom_decoder_init<'mode>(
+pub fn opus_custom_decoder_init<'mode>(
     alloc: &mut CeltDecoderAlloc,
     mode: &'mode OpusCustomMode<'mode>,
     channels: usize,
@@ -4554,7 +4554,7 @@ pub(crate) fn opus_custom_decoder_init<'mode>(
 /// Mirrors `opus_custom_decoder_create()` by allocating the trailing buffers,
 /// validating the channel layout, and returning an owned wrapper that keeps the
 /// decoder state and backing storage alive for the duration of the ported API.
-pub(crate) fn opus_custom_decoder_create<'mode>(
+pub fn opus_custom_decoder_create<'mode>(
     mode: &'mode OpusCustomMode<'mode>,
     channels: usize,
 ) -> Result<OwnedCeltDecoder<'mode>, CeltDecoderInitError> {
@@ -4586,7 +4586,7 @@ fn validate_channel_layout(
 }
 
 /// Applies a control request to the provided decoder state.
-pub(crate) fn opus_custom_decoder_ctl<'dec, 'req>(
+pub fn opus_custom_decoder_ctl<'dec, 'req>(
     decoder: &mut OpusCustomDecoder<'dec>,
     request: DecoderCtlRequest<'dec, 'req>,
 ) -> Result<(), CeltDecoderCtlError> {

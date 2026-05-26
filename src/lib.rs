@@ -6,7 +6,7 @@ mod test_trace;
 
 mod analysis;
 pub mod bitdepth;
-mod celt;
+pub(crate) mod celt;
 mod codec;
 pub mod decoder;
 #[cfg(feature = "deep_plc")]
@@ -62,6 +62,21 @@ pub use crate::codec::{
 pub use crate::opus_decoder::{OpusDecodeError, OpusDecoderCtlError, OpusDecoderInitError};
 pub use crate::opus_encoder::{OpusEncodeError, OpusEncoderCtlError, OpusEncoderInitError};
 pub use crate::packet::PacketError;
+
+/// CELT API for custom modes (non-standard frame sizes/sample rates).
+pub mod celt_api {
+    pub use crate::celt::{
+        CeltDecodeError, CeltDecoderCtlError, CeltDecoderInitError, CeltEncodeError,
+        CeltEncoderCtlError, CeltEncoderInitError, DecoderCtlRequest, EncoderCtlRequest, ModeError,
+        OpusCustomDecoder, OpusCustomEncoder, OpusCustomMode, OwnedCeltDecoder, OwnedCeltEncoder,
+        OwnedOpusCustomMode, opus_custom_decode, opus_custom_decode_float, opus_custom_decode24,
+        opus_custom_decoder_create, opus_custom_decoder_ctl, opus_custom_decoder_get_size,
+        opus_custom_decoder_init, opus_custom_encode, opus_custom_encode_float,
+        opus_custom_encode24, opus_custom_encoder_create, opus_custom_encoder_ctl,
+        opus_custom_encoder_destroy, opus_custom_encoder_get_size, opus_custom_encoder_init,
+        opus_custom_encoder_init_arch, opus_custom_mode_create,
+    };
+}
 
 /// Low-level APIs that intentionally mirror the original C-style libopus surface.
 pub mod c_style_api {

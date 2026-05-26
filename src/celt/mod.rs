@@ -113,5 +113,21 @@ pub(crate) use static_mode_48000_960::*;
 pub(crate) use types::*;
 #[allow(unused_imports)]
 pub(crate) use vq::*;
+
+// For the custom mode API.
+pub use celt_decoder::{
+    CeltDecodeError, CeltDecoderCtlError, CeltDecoderInitError, DecoderCtlRequest,
+    OwnedCeltDecoder, opus_custom_decode, opus_custom_decode_float, opus_custom_decode24,
+    opus_custom_decoder_create, opus_custom_decoder_ctl, opus_custom_decoder_get_size,
+    opus_custom_decoder_init,
+};
+pub use celt_encoder::{
+    CeltEncodeError, CeltEncoderCtlError, CeltEncoderInitError, EncoderCtlRequest,
+    OwnedCeltEncoder, opus_custom_encode, opus_custom_encode_float, opus_custom_encode24,
+    opus_custom_encoder_create, opus_custom_encoder_ctl, opus_custom_encoder_destroy,
+    opus_custom_encoder_get_size, opus_custom_encoder_init, opus_custom_encoder_init_arch,
+};
+pub use modes::{ModeError, OwnedOpusCustomMode, opus_custom_mode_create};
+pub use types::{OpusCustomDecoder, OpusCustomEncoder, OpusCustomMode};
 #[allow(unused_imports)]
 pub(crate) use x86_celt_map::*;

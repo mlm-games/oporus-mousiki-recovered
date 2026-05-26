@@ -397,7 +397,7 @@ pub(crate) fn compute_log_band_widths(layout: &EBandLayout) -> Vec<OpusInt16> {
 
 /// Errors that can occur while constructing a custom CELT mode.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum ModeError {
+pub enum ModeError {
     /// The requested sampling rate is outside the supported range.
     BadSampleRate,
     /// The requested frame size violates the constraints from the reference implementation.
@@ -424,7 +424,7 @@ impl fmt::Display for ModeError {
 
 /// Owned representation of a dynamically constructed CELT mode.
 #[derive(Debug, Clone)]
-pub(crate) struct OwnedOpusCustomMode {
+pub struct OwnedOpusCustomMode {
     sample_rate: OpusInt32,
     frame_size: usize,
     overlap: usize,
@@ -589,7 +589,7 @@ pub(crate) fn opus_custom_mode_find_static_ref(
 }
 
 /// Ports the custom-mode construction from `opus_custom_mode_create()`.
-pub(crate) fn opus_custom_mode_create(
+pub fn opus_custom_mode_create(
     sample_rate: OpusInt32,
     frame_size: usize,
 ) -> Result<OwnedOpusCustomMode, ModeError> {

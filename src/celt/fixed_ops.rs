@@ -70,6 +70,11 @@ pub(crate) fn shl32(a: FixedOpusVal32, shift: u32) -> FixedOpusVal32 {
 }
 
 #[inline]
+pub(crate) fn shr16(a: FixedOpusVal16, shift: u32) -> FixedOpusVal16 {
+    a >> shift
+}
+
+#[inline]
 pub(crate) fn shr32(a: FixedOpusVal32, shift: u32) -> FixedOpusVal32 {
     a >> shift
 }

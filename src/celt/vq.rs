@@ -22,7 +22,7 @@ use crate::celt::fixed_arch::{EPSILON as FIXED_EPSILON, Q15_ONE as Q15_ONE_FIXED
 #[cfg(feature = "fixed_point")]
 use crate::celt::fixed_ops::{
     add32, extract16, mac16_16, mult16_16, mult16_16_q15, mult16_32_q16, mult32_32_q31, pshr32,
-    shr32, vshr32,
+    shr16, shr32, vshr32,
 };
 #[cfg(feature = "fixed_point")]
 use crate::celt::math::celt_ilog2;
@@ -31,8 +31,8 @@ use crate::celt::math::{
 };
 #[cfg(feature = "fixed_point")]
 use crate::celt::math_fixed::{
-    celt_cos_norm as celt_cos_norm_fixed, celt_rcp as celt_rcp_fixed,
-    celt_rsqrt_norm as celt_rsqrt_norm_fixed,
+    celt_atan2p, celt_cos_norm as celt_cos_norm_fixed, celt_rcp as celt_rcp_fixed,
+    celt_rsqrt_norm as celt_rsqrt_norm_fixed, celt_sqrt as celt_sqrt_fixed,
 };
 use crate::celt::pitch::celt_inner_prod;
 #[cfg(feature = "fixed_point")]
@@ -906,6 +906,47 @@ pub(crate) fn stereo_itheta(
     floorf(0.5 + 16_384.0 * FRAC_2_PI * angle) as i32
 }
 
+/// Fixed-point version of `stereo_itheta()`.
+#[cfg(feature = "fixed_point")]
+pub(crate) fn stereo_itheta_fixed(
+    x: &[FixedOpusVal16],
+    y: &[FixedOpusVal16],
+    stereo: bool,
+    n: usize,
+    _arch: i32,
+) -> i32 {
+    assert!(x.len() >= n, "mid channel shorter than requested length");
+    assert!(y.len() >= n, "side channel shorter than requested length");
+
+    let len = n.min(x.len()).min(y.len());
+    let mut emid: FixedOpusVal32 = 1;
+    let mut eside: FixedOpusVal32 = 1;
+
+    if stereo {
+        for i in 0..len {
+            let m = shr16(x[i].wrapping_add(y[i]), 1);
+            let s = shr16(x[i].wrapping_sub(y[i]), 1);
+            emid = emid.wrapping_add((i32::from(m) * i32::from(m)) >> 15);
+            eside = eside.wrapping_add((i32::from(s) * i32::from(s)) >> 15);
+        }
+    } else {
+        for i in 0..len {
+            let xval = i32::from(x[i]);
+            let yval = i32::from(y[i]);
+            emid = emid.wrapping_add((xval * xval) >> 15);
+            eside = eside.wrapping_add((yval * yval) >> 15);
+        }
+    }
+
+    let mid = celt_sqrt_fixed(emid) as i16;
+    let side = celt_sqrt_fixed(eside) as i16;
+
+    const TWO_OVER_PI_Q15: i16 = 20_861;
+    let itheta = mult16_16_q15(TWO_OVER_PI_Q15, celt_atan2p(side, mid));
+
+    i32::from(itheta)
+}
+
 /// Mirrors `extract_collapse_mask()` from `celt/vq.c`.
 ///
 /// The helper inspects the quantised PVQ pulses and determines which of the
@@ -950,6 +991,8 @@ mod tests {
 
     #[cfg(feature = "fixed_point")]
     use super::normalise_residual_fixed;
+    #[cfg(feature = "fixed_point")]
+    use super::{renormalise_vector_fixed, stereo_itheta_fixed};
     use super::{
         SPREAD_NORMAL, alg_quant, alg_unquant, exp_rotation, extract_collapse_mask,
         normalise_residual, renormalise_vector, stereo_itheta,
@@ -1096,6 +1139,29 @@ mod tests {
         let y = [1.0f32; 8];
         let angle = stereo_itheta(&x, &y, false, x.len(), 0);
         assert!((angle - 16_384).abs() <= 1);
+    }
+
+    #[test]
+    #[cfg(feature = "fixed_point")]
+    fn renormalise_vector_fixed_runs_without_panic() {
+        let mut x = vec![1000i16, 2000, 1500, -1000];
+        let n = x.len();
+        let gain = 16384i32;
+
+        renormalise_vector_fixed(&mut x, n, gain, 0);
+
+        assert!(true);
+    }
+
+    #[test]
+    #[cfg(feature = "fixed_point")]
+    fn stereo_itheta_fixed_returns_valid_angle() {
+        let x = vec![100i16, 200, 150, 100];
+        let y = vec![50i16, 100, 75, 50];
+
+        let angle = stereo_itheta_fixed(&x, &y, false, x.len(), 0);
+
+        assert!(angle >= 0 && angle <= 16384, "angle {} out of range", angle);
     }
 
     #[cfg(feature = "fixed_point")]

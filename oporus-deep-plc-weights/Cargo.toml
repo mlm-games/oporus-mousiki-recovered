@@ -1,9 +1,9 @@
 [package]
 name = "oporus-deep-plc-weights"
-version = "0.1.0"
+version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license = "MIT"
+license.workspace = true
 description = "Build-time deep PLC weights blob for Oporus."
 build = "build.rs"
 

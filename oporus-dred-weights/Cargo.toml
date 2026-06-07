@@ -1,11 +1,11 @@
 [package]
 name = "oporus-dred-weights"
-version = "0.1.0"
+version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license = "MIT"
+license.workspace = true
+repository.workspace = true
 description = "Build-time downloader and generator for DRED weights."
-repository = "https://github.com/cijiugechu/oporus"
 
 [features]
 fetch = []

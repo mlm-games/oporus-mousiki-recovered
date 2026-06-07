@@ -752,7 +752,7 @@ dependencies = [
 
 [[package]]
 name = "oporus-deep-plc-weights"
-version = "0.1.0"
+version = "0.2.2"
 dependencies = [
  "flate2",
  "sha2",
@@ -762,7 +762,7 @@ dependencies = [
 
 [[package]]
 name = "oporus-dred-weights"
-version = "0.1.0"
+version = "0.2.2"
 dependencies = [
  "flate2",
  "sha2",
@@ -813,7 +813,7 @@ checksum = "19f132c84eca552bf34cab8ec81f1c1dcc229b811638f9d283dceabe58c5569e"
 
 [[package]]
 name = "playback"
-version = "0.1.0"
+version = "0.2.2"
 dependencies = [
  "cpal",
  "oporus",

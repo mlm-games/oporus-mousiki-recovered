@@ -207,7 +207,8 @@ fn sha256_path(path: &Path) -> io::Result<String> {
         }
         hasher.update(&buf[..read]);
     }
-    Ok(format!("{:x}", hasher.finalize()))
+    let hash = hasher.finalize();
+    Ok(hash.iter().map(|b| format!("{:02x}", b)).collect())
 }
 
 fn strip_comments(input: &str) -> String {

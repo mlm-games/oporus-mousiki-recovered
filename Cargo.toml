@@ -8,16 +8,26 @@ members = [
 exclude = ["fuzz"]
 resolver = "3"
 
+[workspace.package]
+edition = "2024"
+authors = ["mlm-games"] # is mandatory...
+
+[workspace.dependencies]
+sha2 = "0.11"
+flate2 = "1"
+tar = "0.4"
+ureq = { version = "3", features = ["socks-proxy"] }
+
 [package]
 name = "oporus"
-description = "Pure Rust Opus codec."
+description = " (Recovered) Pure Rust Opus codec."
 homepage = "https://github.com/mlm-games/oporus"
 repository = "https://github.com/mlm-games/oporus"
 authors = [
-    "nemurubaka <cijiugechu@gmail.com>", # Seems to have Had deleted/privated the og repo
-]
+    "mlm-games", # is mandatory...
+] #"nemurubaka <cijiugechu@gmail.com>", # Seems to have deleted/privated the og repo
 version = "0.2.2"
-edition = "2024"
+edition.workspace = true
 license = "LGPL-2.1"
 readme = "README.md"
 categories = ["multimedia", "multimedia::audio", "multimedia::encoding"]
@@ -87,4 +97,4 @@ redundant_else = "warn"
 excessive_precision = "allow"
 
 [dev-dependencies]
-sha2 = "0.10"
+sha2.workspace = true

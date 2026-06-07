@@ -101,6 +101,6 @@ fn trivial_example_default_build_golden_hash() {
         }
     }
 
-    let digest = format!("{:x}", hash.finalize());
+    let digest = hash.finalize().iter().map(|b| format!("{:02x}", b)).collect::<String>();
     assert_eq!(digest, EXPECTED_PCM_SHA256);
 }

@@ -1,4 +1,4 @@
-# Recovered version of oporus, with a few other port fixes from the c implementation. Mainly recovered, for adding few other fixes for my apps (Miniter/Yadaw)
+# Recovered version of mousiki, with a few other port fixes from the c implementation. Mainly recovered, for adding few fixes for my apps (Miniter/Yadaw)
 
 
 # Original repo's readme (it was either removed or privated by the original author, but was also uploaded it to crates.io so...)

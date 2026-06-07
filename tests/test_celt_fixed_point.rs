@@ -16,7 +16,10 @@ fn test_celt_fixed_point_decode_plc() {
     let mut pcm = vec![0i16; 960];
     let result = opus_decode(&mut decoder, None, 0, &mut pcm, 960, false);
 
-    assert!(result.is_ok(), "PLC decode should succeed in fixed-point mode");
+    assert!(
+        result.is_ok(),
+        "PLC decode should succeed in fixed-point mode"
+    );
     let samples = result.unwrap();
     assert_eq!(samples, 960, "PLC should generate 960 samples");
 }
@@ -34,9 +37,15 @@ fn test_celt_fixed_point_decode_stereo() {
     let mut pcm = vec![0i16; 1920];
     let result = opus_decode(&mut decoder, None, 0, &mut pcm, 960, false);
 
-    assert!(result.is_ok(), "Stereo PLC should succeed in fixed-point mode");
+    assert!(
+        result.is_ok(),
+        "Stereo PLC should succeed in fixed-point mode"
+    );
     let samples = result.unwrap();
-    assert_eq!(samples, 960, "Stereo PLC should generate 960 samples per channel");
+    assert_eq!(
+        samples, 960,
+        "Stereo PLC should generate 960 samples per channel"
+    );
 }
 
 #[cfg(feature = "fixed_point")]
@@ -46,12 +55,18 @@ fn test_celt_fixed_point_multiple_sample_rates() {
 
     for &sample_rate in &[8000, 12000, 16000, 24000, 48000] {
         let decoder = opus_decoder_create(sample_rate, 1);
-        assert!(decoder.is_ok(), "Decoder creation should succeed for {sample_rate} Hz");
+        assert!(
+            decoder.is_ok(),
+            "Decoder creation should succeed for {sample_rate} Hz"
+        );
     }
 }
 
 #[cfg(not(feature = "fixed_point"))]
 #[test]
 fn test_fixed_point_feature_required() {
-    assert!(true, "Fixed-point tests are only available with --features fixed_point");
+    assert!(
+        true,
+        "Fixed-point tests are only available with --features fixed_point"
+    );
 }

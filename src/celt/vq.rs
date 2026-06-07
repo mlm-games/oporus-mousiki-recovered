@@ -991,12 +991,12 @@ mod tests {
 
     #[cfg(feature = "fixed_point")]
     use super::normalise_residual_fixed;
-    #[cfg(feature = "fixed_point")]
-    use super::{renormalise_vector_fixed, stereo_itheta_fixed};
     use super::{
         SPREAD_NORMAL, alg_quant, alg_unquant, exp_rotation, extract_collapse_mask,
         normalise_residual, renormalise_vector, stereo_itheta,
     };
+    #[cfg(feature = "fixed_point")]
+    use super::{renormalise_vector_fixed, stereo_itheta_fixed};
     use crate::celt::entdec::EcDec;
     use crate::celt::entenc::EcEnc;
 

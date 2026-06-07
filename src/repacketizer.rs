@@ -355,7 +355,12 @@ impl OpusRepacketizer {
                 )
                 .map_err(map_extension_error)?;
                 if !pad {
-                    pad_amount = ext_len + if ext_len > 0 { (ext_len + 253) / 254 } else { 1 };
+                    pad_amount = ext_len
+                        + if ext_len > 0 {
+                            (ext_len + 253) / 254
+                        } else {
+                            1
+                        };
                 }
             }
 

@@ -125,7 +125,10 @@ fn run() -> Result<(), ExampleError> {
         }
     }
 
-    eprintln!("Successfully decoded {} frames using CELT fixed-point", frame_count);
+    eprintln!(
+        "Successfully decoded {} frames using CELT fixed-point",
+        frame_count
+    );
     eprintln!("Output written to: {}", output_path.display());
 
     Ok(())

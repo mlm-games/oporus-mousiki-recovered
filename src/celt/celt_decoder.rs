@@ -2343,10 +2343,7 @@ const DECODER_PREFIX_SIZE: usize = core::mem::size_of::<DecoderLayoutStub>();
 
 /// Returns the number of bytes required to allocate a decoder for `mode`.
 #[must_use]
-pub fn opus_custom_decoder_get_size(
-    mode: &OpusCustomMode<'_>,
-    channels: usize,
-) -> Option<usize> {
+pub fn opus_custom_decoder_get_size(mode: &OpusCustomMode<'_>, channels: usize) -> Option<usize> {
     if channels == 0 || channels > MAX_CHANNELS {
         return None;
     }

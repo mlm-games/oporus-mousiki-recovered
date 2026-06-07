@@ -737,7 +737,7 @@ checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
 
 [[package]]
 name = "oporus"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "bitflags 2.13.0",
  "cfg-if",
@@ -752,7 +752,7 @@ dependencies = [
 
 [[package]]
 name = "oporus-deep-plc-weights"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "flate2",
  "sha2",
@@ -762,7 +762,7 @@ dependencies = [
 
 [[package]]
 name = "oporus-dred-weights"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "flate2",
  "sha2",
@@ -813,7 +813,7 @@ checksum = "19f132c84eca552bf34cab8ec81f1c1dcc229b811638f9d283dceabe58c5569e"
 
 [[package]]
 name = "playback"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "cpal",
  "oporus",

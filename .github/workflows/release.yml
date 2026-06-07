@@ -107,12 +107,12 @@ jobs:
 
       - name: Download DNN weights for build verification
         run: |
+          WEIGHTS_DIR="$(mktemp -d)"
           URL="https://media.xiph.org/opus/models/opus_data-4ec556dd87e63c17c4a805c40685ef3fe1fad7c8b26b123f2ede553b50158cb1.tar.gz"
-          curl -L -o weights.tar.gz "$URL"
-          mkdir -p weights
-          tar xzf weights.tar.gz -C weights
-          echo "DNN_WEIGHTS_PATH=$PWD/weights/dnn" >> "$GITHUB_ENV"
-          echo "DRED_WEIGHTS_PATH=$PWD/weights/dnn" >> "$GITHUB_ENV"
+          curl -L -o "$WEIGHTS_DIR/weights.tar.gz" "$URL"
+          tar xzf "$WEIGHTS_DIR/weights.tar.gz" -C "$WEIGHTS_DIR"
+          echo "DNN_WEIGHTS_PATH=$WEIGHTS_DIR/dnn" >> "$GITHUB_ENV"
+          echo "DRED_WEIGHTS_PATH=$WEIGHTS_DIR/dnn" >> "$GITHUB_ENV"
 
       - name: Publish all workspace crates
         env:

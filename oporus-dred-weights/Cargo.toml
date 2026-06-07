@@ -1,10 +1,10 @@
 [package]
-name = "mousiki-dred-weights"
+name = "oporus-dred-weights"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
 description = "Build-time downloader and generator for DRED weights."
-repository = "https://github.com/cijiugechu/mousiki"
+repository = "https://github.com/cijiugechu/oporus"
 
 [features]
 fetch = []

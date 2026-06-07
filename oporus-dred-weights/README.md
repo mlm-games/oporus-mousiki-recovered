@@ -1,6 +1,6 @@
-# mousiki-dred-weights
+# oporus-dred-weights
 
-Build-time generator for DRED weights and stats tables used by mousiki.
+Build-time generator for DRED weights and stats tables used by oporus.
 
 ## Features
 

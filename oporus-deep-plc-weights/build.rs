@@ -39,7 +39,7 @@ fn main() -> io::Result<()> {
                     "DNN_WEIGHTS_PATH not set and fetch feature disabled. \
 Set DNN_WEIGHTS_PATH to a directory or tarball containing pitchdnn_data.c, \
 fargan_data.c, plc_data.c, dred_rdovae_enc_data.c, and dred_rdovae_dec_data.c, \
-or enable the mousiki-deep-plc-weights `fetch` feature.",
+or enable the oporus-deep-plc-weights `fetch` feature.",
                 ));
             }
             download_and_extract(&work_dir)?
@@ -136,7 +136,7 @@ fn download_model(url: &str, dest: &Path) -> io::Result<()> {
     let agent = ureq::Agent::config_builder().build().new_agent();
     let mut response = agent
         .get(url)
-        .header("User-Agent", "mousiki-deep-plc-weights")
+        .header("User-Agent", "oporus-deep-plc-weights")
         .call()
         .map_err(|err| {
             io::Error::other(format!(
@@ -959,7 +959,7 @@ fn write_weight_entry(
     let name_bytes = entry.name.as_bytes();
     let copy_len = name_bytes.len().min(WEIGHT_NAME_LEN - 1);
     if name_bytes.len() >= WEIGHT_NAME_LEN {
-        eprintln!("[mousiki-deep-plc-weights] warning: name {} truncated", entry.name);
+        eprintln!("[oporus-deep-plc-weights] warning: name {} truncated", entry.name);
     }
     header[20..20 + copy_len].copy_from_slice(&name_bytes[..copy_len]);
 

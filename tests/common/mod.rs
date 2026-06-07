@@ -1,5 +1,5 @@
-use mousiki::decoder::Decoder;
-use mousiki::oggreader::{OggRead, OggReader, OggReaderError, ReadError};
+use oporus::decoder::Decoder;
+use oporus::oggreader::{OggRead, OggReader, OggReaderError, ReadError};
 
 pub const MAX_PCM_BYTES: usize = 1920;
 pub const OPUS_TAGS_SIGNATURE: &[u8] = b"OpusTags";

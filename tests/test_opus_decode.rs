@@ -1,9 +1,9 @@
-use mousiki::c_style_api::opus::opus_pcm_soft_clip;
-use mousiki::c_style_api::opus_decoder::{
+use oporus::c_style_api::opus::opus_pcm_soft_clip;
+use oporus::c_style_api::opus_decoder::{
     OpusDecodeError, OpusDecoder, OpusDecoderCtlRequest, opus_decode, opus_decoder_create,
     opus_decoder_ctl, opus_decoder_get_nb_samples,
 };
-use mousiki::c_style_api::packet::opus_packet_get_nb_channels;
+use oporus::c_style_api::packet::opus_packet_get_nb_channels;
 
 const MAX_PACKET: usize = 1500;
 const MAX_FRAME_SAMP: usize = 5760;

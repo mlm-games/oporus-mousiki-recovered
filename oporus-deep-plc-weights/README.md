@@ -1,4 +1,4 @@
-# mousiki-deep-plc-weights
+# oporus-deep-plc-weights
 
 Builds a deep PLC/DRED weight blob at compile time and exposes it via
 `DNN_BLOB`.

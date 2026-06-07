@@ -1,10 +1,10 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use mousiki::opus_decoder::{
+use oporus::opus_decoder::{
     OpusDecoderCtlRequest, opus_decode, opus_decoder_create, opus_decoder_ctl,
 };
-use mousiki::packet::{opus_packet_get_bandwidth, opus_packet_get_nb_channels};
+use oporus::packet::{opus_packet_get_bandwidth, opus_packet_get_nb_channels};
 
 const MAX_FRAME_SAMP: usize = 5760;
 const MAX_PACKET: usize = 1500;

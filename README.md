@@ -1,9 +1,9 @@
-# Recovered version of mousiki, with a few other port fixes from the c implementation. Mainly recovered, for adding few other fixes for my apps (Miniter/Yadaw)
+# Recovered version of oporus, with a few other port fixes from the c implementation. Mainly recovered, for adding few other fixes for my apps (Miniter/Yadaw)
 
 
 # Original repo's readme (it was either removed or privated by the original author, but was also uploaded it to crates.io so...)
 
-# mousiki
+# oporus
 
 A Rust port of the Xiph `opus-c` reference implementation. The core crate is
 `#![no_std]` and uses `alloc` (some APIs allocate).
@@ -98,7 +98,7 @@ Opus front-end (SILK/CELT/Hybrid, stereo) with typed enums and method-based
 state:
 
 ```rust
-use mousiki::{Application, Bitrate, Channels, Decoder, Encoder};
+use oporus::{Application, Bitrate, Channels, Decoder, Encoder};
 
 const SAMPLE_RATE: u32 = 48_000;
 const FRAME_SIZE: usize = 960;
@@ -121,13 +121,13 @@ let _decoded_pcm = &pcm_out[..total_samples];
 ```
 
 If you need API parity with the C entry points, use
-`mousiki::c_style_api::*`.
+`oporus::c_style_api::*`.
 
 If you only need the lightweight SILK-only, single-frame decoder (mono,
 48 kHz), use `decoder::Decoder` directly:
 
 ```rust
-use mousiki::decoder::Decoder;
+use oporus::decoder::Decoder;
 
 // `packet` is a single Opus SILK-only, mono packet (already decontainerized; not an Ogg page).
 let packet: &[u8] = /* your Opus packet */;
@@ -142,7 +142,7 @@ assert!(!stereo, "mono only for now");
 ```
 
 For `f32` output, use `decode_float32` and a buffer of length 960 for a 20 ms frame.
-For Ogg input, see the `decode` example and the `mousiki::oggreader` module to
+For Ogg input, see the `decode` example and the `oporus::oggreader` module to
 extract raw Opus packets.
 
 

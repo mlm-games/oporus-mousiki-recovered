@@ -34,7 +34,7 @@ fn main() -> io::Result<()> {
                     "DRED_WEIGHTS_PATH not set and fetch feature disabled. \
 Set DRED_WEIGHTS_PATH to a directory or tarball containing \
 dred_rdovae_dec_data.c, dred_rdovae_stats_data.c, dred_rdovae_enc_data.c, \
-and pitchdnn_data.c, or enable the mousiki-dred-weights `fetch` feature \
+and pitchdnn_data.c, or enable the oporus-dred-weights `fetch` feature \
 (use `dred_fetch` in the main crate).",
                 ));
             }
@@ -125,7 +125,7 @@ fn download_model(url: &str, dest: &Path) -> io::Result<()> {
     let agent = ureq::Agent::config_builder().build().new_agent();
     let mut response = agent
         .get(url)
-        .header("User-Agent", "mousiki-dred-weights")
+        .header("User-Agent", "oporus-dred-weights")
         .call()
         .map_err(|err| {
             io::Error::other(format!(

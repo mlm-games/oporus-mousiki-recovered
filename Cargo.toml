@@ -2,17 +2,17 @@
 members = [
     ".",
     "examples/playback",
-    "mousiki-dred-weights",
-    "mousiki-deep-plc-weights",
+    "oporus-dred-weights",
+    "oporus-deep-plc-weights",
 ]
 exclude = ["fuzz"]
 resolver = "3"
 
 [package]
-name = "mousiki"
+name = "oporus"
 description = "Pure Rust Opus codec."
-homepage = "https://github.com/mlm-games/mousiki"
-repository = "https://github.com/mlm-games/mousiki"
+homepage = "https://github.com/mlm-games/oporus"
+repository = "https://github.com/mlm-games/oporus"
 authors = [
     "nemurubaka <cijiugechu@gmail.com>", # Seems to have Had deleted/privated the og repo
 ]
@@ -48,10 +48,10 @@ fixed_point = []
 force-scalar = []
 enable_res24 = ["fixed_point"]
 deep_plc = ["dred"]
-deep_plc_weights = ["deep_plc", "mousiki-deep-plc-weights"]
-deep_plc_weights_fetch = ["deep_plc_weights", "mousiki-deep-plc-weights/fetch"]
-dred = ["mousiki-dred-weights"]
-dred_fetch = ["dred", "mousiki-dred-weights/fetch"]
+deep_plc_weights = ["deep_plc", "oporus-deep-plc-weights"]
+deep_plc_weights_fetch = ["deep_plc_weights", "oporus-deep-plc-weights/fetch"]
+dred = ["oporus-dred-weights"]
+dred_fetch = ["dred", "oporus-dred-weights/fetch"]
 custom_modes = []
 silk_strict_asserts = []
 silk_debug = ["dep:spin"]
@@ -67,8 +67,8 @@ spin = { version = "0.9", default-features = false, features = [
     "mutex",
     "spin_mutex",
 ], optional = true }
-mousiki-deep-plc-weights = { version = "0.1.0", path = "mousiki-deep-plc-weights", optional = true }
-mousiki-dred-weights = { version = "0.1.0", path = "mousiki-dred-weights", optional = true }
+oporus-deep-plc-weights = { version = "0.1.0", path = "oporus-deep-plc-weights", optional = true }
+oporus-dred-weights = { version = "0.1.0", path = "oporus-dred-weights", optional = true }
 dhat = { version = "0.3", optional = true }
 
 

@@ -1,8 +1,8 @@
 //! Port of the padding overflow regression test from
 //! `opus-c/tests/test_opus_padding.c`, adapted to the current Rust decoder API.
 
-use mousiki::decoder::{Decoder, DecoderError};
-use mousiki::opus_get_version_string;
+use oporus::decoder::{Decoder, DecoderError};
+use oporus::opus_get_version_string;
 
 // 16,909,318 bytes mirrors the pathological packet length from the C test.
 const PACKET_SIZE: usize = 16_909_318;

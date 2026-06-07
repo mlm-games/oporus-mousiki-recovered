@@ -1,7 +1,7 @@
 // DRED stats data live in the weights crate when the feature is enabled.
 
 #[cfg(feature = "dred")]
-pub use mousiki_dred_weights::dred_stats_data::*;
+pub use oporus_dred_weights::dred_stats_data::*;
 
 #[cfg(not(feature = "dred"))]
 pub(crate) const DRED_LATENT_QUANT_SCALES_Q8: [u8; 336] = [0; 336];

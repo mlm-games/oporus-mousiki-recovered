@@ -1,5 +1,5 @@
-use mousiki::c_style_api::opus_decoder::{opus_decode, opus_decoder_create};
-use mousiki::c_style_api::opus_encoder::{
+use oporus::c_style_api::opus_decoder::{opus_decode, opus_decoder_create};
+use oporus::c_style_api::opus_encoder::{
     OpusEncoderCtlRequest, opus_encode, opus_encoder_create, opus_encoder_ctl,
 };
 #[cfg(not(feature = "fixed_point"))]

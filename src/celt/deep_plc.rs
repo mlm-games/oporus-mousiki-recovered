@@ -22,7 +22,7 @@ use crate::plc_model::PlcModel;
 use alloc::vec::Vec;
 use libm::{cosf, log10f, powf, sqrt, sqrtf};
 #[cfg(feature = "deep_plc_weights")]
-use mousiki_deep_plc_weights::DNN_BLOB;
+use oporus_deep_plc_weights::DNN_BLOB;
 
 /// Number of 16 kHz samples produced per neural PLC update.
 pub(crate) const PLC_FRAME_SIZE: usize = 160;

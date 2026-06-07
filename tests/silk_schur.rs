@@ -1,4 +1,4 @@
-use mousiki::silk::schur::silk_schur;
+use oporus::silk::schur::silk_schur;
 
 #[test]
 fn schur_matches_reference_case_one() {

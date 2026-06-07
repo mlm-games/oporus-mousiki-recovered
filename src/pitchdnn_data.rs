@@ -1,1 +1,1 @@
-pub use mousiki_dred_weights::pitchdnn_data::*;
+pub use oporus_dred_weights::pitchdnn_data::*;

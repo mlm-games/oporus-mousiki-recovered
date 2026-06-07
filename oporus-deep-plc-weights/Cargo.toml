@@ -1,9 +1,9 @@
 [package]
-name = "mousiki-deep-plc-weights"
+name = "oporus-deep-plc-weights"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
-description = "Build-time deep PLC weights blob for Mousiki."
+description = "Build-time deep PLC weights blob for Oporus."
 build = "build.rs"
 
 [features]

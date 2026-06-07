@@ -1923,7 +1923,7 @@ mod tests {
     use alloc::vec;
     use alloc::vec::Vec;
     #[cfg(feature = "deep_plc_weights")]
-    use mousiki_deep_plc_weights::DNN_BLOB;
+    use oporus_deep_plc_weights::DNN_BLOB;
 
     use crate::packet::{
         Bandwidth, Mode, PacketError, opus_packet_get_bandwidth, opus_packet_get_nb_channels,

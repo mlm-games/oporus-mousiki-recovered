@@ -6,9 +6,9 @@
 /// and writing raw PCM output.
 
 #[cfg(feature = "fixed_point")]
-use mousiki::decoder::{Decoder, DecoderError};
+use oporus::decoder::{Decoder, DecoderError};
 #[cfg(feature = "fixed_point")]
-use mousiki::oggreader::{OggRead, OggReader, OggReaderError, ReadError};
+use oporus::oggreader::{OggRead, OggReader, OggReaderError, ReadError};
 #[cfg(feature = "fixed_point")]
 use std::env;
 #[cfg(feature = "fixed_point")]

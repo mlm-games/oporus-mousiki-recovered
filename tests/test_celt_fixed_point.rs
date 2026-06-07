@@ -6,7 +6,7 @@
 #[cfg(feature = "fixed_point")]
 #[test]
 fn test_celt_fixed_point_decode_plc() {
-    use mousiki::c_style_api::opus_decoder::{opus_decode, opus_decoder_create};
+    use oporus::c_style_api::opus_decoder::{opus_decode, opus_decoder_create};
 
     let sample_rate = 48000;
     let channels = 1;
@@ -24,7 +24,7 @@ fn test_celt_fixed_point_decode_plc() {
 #[cfg(feature = "fixed_point")]
 #[test]
 fn test_celt_fixed_point_decode_stereo() {
-    use mousiki::c_style_api::opus_decoder::{opus_decode, opus_decoder_create};
+    use oporus::c_style_api::opus_decoder::{opus_decode, opus_decoder_create};
 
     let sample_rate = 48000;
     let channels = 2;
@@ -42,7 +42,7 @@ fn test_celt_fixed_point_decode_stereo() {
 #[cfg(feature = "fixed_point")]
 #[test]
 fn test_celt_fixed_point_multiple_sample_rates() {
-    use mousiki::c_style_api::opus_decoder::opus_decoder_create;
+    use oporus::c_style_api::opus_decoder::opus_decoder_create;
 
     for &sample_rate in &[8000, 12000, 16000, 24000, 48000] {
         let decoder = opus_decoder_create(sample_rate, 1);

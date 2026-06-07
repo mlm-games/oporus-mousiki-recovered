@@ -2,10 +2,10 @@
 
 mod opus_encode_regressions_data;
 
-use mousiki::c_style_api::opus_encoder::{
+use oporus::c_style_api::opus_encoder::{
     OpusEncoderCtlRequest, opus_encode, opus_encoder_create, opus_encoder_ctl,
 };
-use mousiki::c_style_api::opus_multistream::{
+use oporus::c_style_api::opus_multistream::{
     OpusMultistreamEncoderCtlRequest, opus_multistream_encode, opus_multistream_encoder_create,
     opus_multistream_encoder_ctl, opus_multistream_surround_encoder_create,
 };

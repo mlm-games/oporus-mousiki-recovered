@@ -1,5 +1,5 @@
-use mousiki::decoder::{Decoder, DecoderError};
-use mousiki::oggreader::{OggRead, OggReader, OggReaderError, ReadError};
+use oporus::decoder::{Decoder, DecoderError};
+use oporus::oggreader::{OggRead, OggReader, OggReaderError, ReadError};
 use std::env;
 use std::fs::File;
 use std::io::{self, Write};

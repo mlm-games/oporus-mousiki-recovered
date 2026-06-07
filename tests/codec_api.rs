@@ -1,4 +1,4 @@
-use mousiki::{
+use oporus::{
     Application, Bitrate, Channels, Decoder, Encoder, FrameDuration, OpusDecodeError,
     OpusEncodeError, Signal,
 };

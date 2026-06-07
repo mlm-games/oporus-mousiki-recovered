@@ -1,6 +1,6 @@
 /target
 /target-codex
-Cargo.lock
+# Cargo.lock
 *.wav
 *.pcm
 !testdata/ehren-paper_lights-96.pcm
